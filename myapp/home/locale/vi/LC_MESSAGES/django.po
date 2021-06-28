@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-10 16:43+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\home\templates\contact.html:38
+msgid "Send Message"
+msgstr "Gửi tin nhắn"
+
+#: .\home\templates\footer.html:89
+msgid "Service"
+msgstr "Dịch vụ"
+
+#: .\home\templates\footer.html:91
+msgid "Online Help"
+msgstr "Hỗ trợ online"
+
+#: .\home\templates\footer.html:92
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact Us"
+msgstr "Liên hệ"
+
+#: .\home\templates\footer.html:93
+msgid "Order Status"
+msgstr "Trạng thái đơn hàng"
+
+#: .\home\templates\footer.html:94
+msgid "Change Location"
+msgstr "Thay đổi vị trí"
+
+#: .\home\templates\footer.html:95
+msgid "FAQ’s"
+msgstr "Câu hỏi"
+
+#: .\home\templates\footer.html:101
+msgid "Quock Shop"
+msgstr "Cửa hàng nhanh chóng"
+
+#: .\home\templates\footer.html:103
+msgid "T-Shirt"
+msgstr "Áo thun"
+
+#: .\home\templates\footer.html:104
+msgid "Mens"
+msgstr "Nam giới"
+
+#: .\home\templates\footer.html:105
+msgid "Womens"
+msgstr "Phụ nữ"
+
+#: .\home\templates\footer.html:106
+msgid "Gift Cards"
+msgstr "Thẻ quà tặng"
+
+#: .\home\templates\footer.html:107
+msgid "Shoes"
+msgstr "Giầy"
+
+#: .\home\templates\footer.html:113
+msgid "Policies"
+msgstr "Chính sách"
+
+#: .\home\templates\footer.html:115
+msgid "Terms of Use"
+msgstr "Điều khoản sử dụng"
+
+#: .\home\templates\footer.html:116
+msgid "Privecy Policy"
+msgstr "Chính sách bảo mật"
+
+#: .\home\templates\footer.html:117
+msgid "Refund Policy"
+msgstr "Chính sách hoàn tiền"
+
+#: .\home\templates\footer.html:118
+msgid "Billing System"
+msgstr "Hệ thống thanh toán"
+
+#: .\home\templates\footer.html:119
+msgid "Ticket System"
+msgstr "Hệ thống vé"
+
+#: .\home\templates\footer.html:125 .\home\templates\footer.html:137
+msgid "About Shopper"
+msgstr "Giới thiệu TSDI Eshopper"
+
+#: .\home\templates\footer.html:127
+msgid "Company Information"
+msgstr "Thông tin công ty"
+
+#: .\home\templates\footer.html:128
+msgid "Careers"
+msgstr "Nghề nghiệp"
+
+#: .\home\templates\footer.html:129
+msgid "Store Location"
+msgstr "Vị trí cửa hàng"
+
+#: .\home\templates\footer.html:130
+msgid "Affillate Program"
+msgstr "Chương trình liên kết"
+
+#: .\home\templates\footer.html:131
+msgid "Copyright"
+msgstr "Bản quyền"
+
+#: .\home\templates\footer.html:139
+msgid "Your email address"
+msgstr "địa chỉ email của chúng tôi"
+
+#: .\home\templates\footer.html:141
+msgid "Get the most recent updates from"
+msgstr "Nhận các bản cập nhật gần đây nhất từ"
+
+#: .\home\templates\footer.html:141
+msgid "our site and be updated your self..."
+msgstr "trang web của chúng tôi và được cập nhật bản thân của bạn"
+
+#: .\home\templates\footer.html:153
+msgid " Copyright © 2021 TSDI E-SHOPPER Inc. All rights reserved."
+msgstr "Bản quyền © 2021 TSDI E-SHOPPER Inc. Mọi quyền được bảo lưu."
+
+#: .\home\templates\footer.html:154
+msgid "Designed by"
+msgstr "Thiết kế bởi"
+
+#: .\home\templates\header.html:11
+msgid "About"
+msgstr "Về chúng tôi"
+
+#: .\home\templates\header.html:12
+msgid "Contact"
+msgstr "Liên hệ"
+
+#: .\home\templates\header.html:13
+msgid "Welcome to TSDI"
+msgstr "Chào mừng đến với TSDI"
+
+#: .\home\templates\header.html:117
+msgid "User Profile"
+msgstr "Thông tin người dùng"
+
+#: .\home\templates\header.html:118
+msgid "My Orders"
+msgstr "Đơn hàng của tôi"
+
+#: .\home\templates\header.html:119
+msgid "My Comment"
+msgstr "Bình luận của tôi"
+
+#: .\home\templates\header.html:120
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: .\home\templates\header.html:125
+msgid "Sign up"
+msgstr "Đăng ký"
+
+#: .\home\templates\header.html:126
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: .\home\templates\header.html:128
+msgid "Wishlist"
+msgstr "Yêu thích"
+
+#: .\home\templates\header.html:132
+msgid "Cart"
+msgstr "Giỏ hàng"
+
+#: .\home\templates\left.html:6
+msgid "Category"
+msgstr "Thể loại"
+
+#: .\home\templates\left.html:36
+msgid "Brands"
+msgstr "Thương hiệu"
+
+#: .\home\templates\left.html:51
+msgid "Price Range"
+msgstr "Phạm vi giá"
+
+#: .\home\templates\products.html:5
+msgid "Features Items"
+msgstr "Sản phẩm đặc trưng"
+
+#: .\home\templates\slider.html:26 .\home\templates\slider.html:39
+msgid "Get it now"
+msgstr "Lấy sản phẩm"
+
+#: .\home\urls.py:8
+#, fuzzy
+#| msgid "About"
+msgid "about/"
+msgstr "Về chúng tôi/"
+
+#: .\home\urls.py:9
+#, fuzzy
+#| msgid "Contact"
+msgid "contact/"
+msgstr "Liên hệ/"

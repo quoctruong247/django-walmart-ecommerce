@@ -1,0 +1,19 @@
+color :
+top : #041e42
+orther: 
+
+pip install django
+pip install django-ckeditor
+pip install pillow
+pip install django-mptt
+pip install django-admin-thumbnails
+language
+pip install django-gettext
+Make sure you have GNU gettest tools 0.15 or never installed
+django-admin makemessages -l en -a
+django-admin makemessages -l vi -a
+django-admin compilemessages
+
+currency-------------
+pip install django-currencies
+

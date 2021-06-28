@@ -1,0 +1,159 @@
+{% load static %}
+{% load i18n %}
+<header id="header" class="sticky-top"><!--header-->
+    <div class="header_top"><!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="{% url 'about' %}"><i class="fa fa-phone"></i> {% trans "About" %}</a></li>
+                            <li><a href="{% url 'contact' %}"><i class="fa fa-envelope"></i> {% trans "Contact" %} </a></li>
+                            <li><a href="#">{% trans "Welcome to TSDI" %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="{% url 'faq' %}"><i class="fa fa-question-circle" aria-hidden="true"></i></a></li>
+                            <li>
+                                <form action="{% url 'selectlanguage' %}" method="post">{% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                                    <select name="language" onchange="submit()" >
+
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% get_available_languages as LANGUAGES %}
+                                        {% get_language_info_list for LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                {{ language.name_local }} ({{ language.code }})
+                                            </option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <noscript>
+                                        <input type="submit" value="Set" />
+                                    </noscript>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header_top-->
+
+
+    <div class="header-middle"><!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="{% url 'home' %}"><img src="{% static 'images/home/logo.png' %}" alt="" width="140"/></a>
+                    </div>
+                    <div class="btn-group pull-right">
+<!--                        <div class="btn-group">-->
+<!--                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">-->
+<!--                                USA-->
+<!--                                <span class="caret"></span>-->
+<!--                            </button>-->
+<!--                            <ul class="dropdown-menu">-->
+<!--                                <li><a href="#">Canada</a></li>-->
+<!--                                <li><a href="#">UK</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+                        
+                        <div class="btn-group">
+                            <form id="currency_switcher" method="POST" action="{% url 'selectcurrency' %}">
+                            {% csrf_token %}
+                            <select name="currency" onchange="submit()" >
+                                {% for curr in CURRENCIES %}
+                                    <option value="{{ curr.code }}"
+                                            {% ifequal curr.code request.session.currency %}selected="selected"{% endifequal %}>
+                                        {{ curr.symbol }} {{ curr.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <noscript>
+                                <input type="submit" value="Set" />
+                            </noscript>
+
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+
+                        <div class="search_box pull-right">
+                            <form action="/search/" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="query" placeholder="Search" class="input search-input"/>
+                                <select name="catid" class="input search-categories">
+                                    <option value="0" selected>All Category </option>
+                                    {% load poll_extras %}
+                                    {% categorylist as categories %}
+                                    {% for category in categories %}
+                                        {% if category.parent == None %}
+                                        <optgroup label="{{category.title}}" class="fw-bold">{{category.title}}</optgroup>
+                                        {% else %}
+                                        <option value="{{category.id}}">&nbsp;&nbsp;--{{category.title}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </select>
+                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+
+                </div>
+
+                    <div class="pull-right mainmenu ">
+                        <ul class="nav navbar-nav">
+                            {% if user.id is not None %}
+                            <li class="dropdown">
+                                <a href="#">
+                                    <img src="{{request.session.userimage}}" alt="" style="height:23px; width:23px; border-radius:12px">
+                                    {{user.first_name}} <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="{% url 'userprofile' %}">{% trans "User Profile" %}</a></li>
+                                    <li><a href="{% url 'user_orders' %}">{% trans "My Orders" %}</a></li>
+                                    <li><a href="{% url 'user_comments' %}">{% trans "My Comment" %}</a></li>
+                                    <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
+                                </ul>
+                            </li>
+<!--                            <li><a  href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>-->
+                            {% else %}
+                            <li><a href="{% url 'signup' %}"><i class="fa fa-user"></i> {% trans "Sign up" %}</a></li>
+                            <li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> {% trans "Login" %}</a></li>
+                            {% endif %}
+                            <li><a href="#"><i class="fa fa-star"></i> {% trans "Wishlist" %}</a></li>
+<!--                            <li><a href="{% url 'checkout' %}"><i class="fa fa-crosshairs"></i> Checkout</a></li>-->
+                            <li>
+                                <a href="{% url 'shopcart' %}">
+                                    <i class="fa fa-shopping-cart"></i> {% trans "Cart" %}
+                                    {% load poll_extras %}
+                                    {% shopcartcount user.id as count %}
+                                    <span class="qty"> {{count}}</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-middle-->
+
+    <div class="header-bottom"><!--header-bottom-->
+
+    </div><!--/header-bottom-->
+</header><!--/header-->

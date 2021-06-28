@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load currency %}
+{% block title %} {{title}} {% endblock title %}
+
+{% block content %}
+{%	include 'slider.html' %}
+<section>
+    <div class="container">
+        <div class="row">
+            {%	include 'left.html' %}
+<!--            Products-->
+            {%	include 'products.html' %}
+        </div>
+    </div>
+</section>
+{%endblock%}

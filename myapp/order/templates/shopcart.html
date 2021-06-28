@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Shop Cart {% endblock %}
+
+{% block content %}
+<section id="cart_items">
+	<Form action="{% url 'orderproduct' %}" method="post">
+		{% csrf_token %}
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+                    {% for item in shopcart %}
+						<tr>
+							<td class="cart_product">
+								{% if item.variant.image_id  > 0 %}
+									<img src="{{item.variant.image }}" alt="" width="80">
+								{% else %}
+									<img src="{{item.product.image.url}}" alt="" width="80">
+								{% endif %}
+							</td>
+							<td class="cart_description">
+								<p><a href="">{{item.product}}</a></p>
+								<p>Web ID: {{item.id}}</p>
+							</td>
+							<td class="cart_price">
+								{% if item.product.variant == 'None' %}
+									{{ item.product.price }}
+								{% else %}
+									{{ item.variant.price }}
+								{% endif %}
+
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{item.quantity}}" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">
+									{% if item.product.variant == 'None' %}
+										{{ item.amount}}
+									{% else %}
+										{{ item.varamount}}
+									{% endif %}
+								</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="{% url 'deletefromcart' item.id %}" onclick="return confirm('Delete, Are you sure')"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+                    {% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			<div class="heading">
+				<h3>What would you like to do next?</h3>
+				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+			</div>
+			<div class="shopper-informations">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="shopper-info">
+							<p>Shopper Information</p>
+
+								<input type="text" name="first_name" placeholder="First name" value="{{profile.user.first_name}}">
+								<input type="text" name="last_name" placeholder="Last name" value="{{profile.user.last_name}}">
+								<input type="text" name="address" placeholder="Address" value="{{profile.address}}">
+								<input type="text" name="phone" placeholder="phone" value="{{profile.phone}}">
+								<input type="text" name="city" placeholder="city" value="{{profile.city}}">
+								<input type="text" name="country" placeholder="country" value="{{profile.country}}">
+
+							<a class="btn btn-primary" href="">Get Quotes</a>
+							<a class="btn btn-primary" href="">Continue</a>
+						</div>
+					</div>
+					<div class="col-sm-5 clearfix">
+						<div class="bill-to">
+							<p>Bill To</p>
+							<div class="form-one">
+
+									<input type="text" placeholder="Company Name">
+									<input type="text" placeholder="Email*">
+									<input type="text" placeholder="Title">
+									<input type="text" placeholder="First Name *">
+									<input type="text" placeholder="Middle Name">
+									<input type="text" placeholder="Last Name *">
+									<input type="text" placeholder="Address 1 *">
+									<input type="text" placeholder="Address 2">
+
+							</div>
+							<div class="form-two">
+
+									<input type="text" placeholder="Zip / Postal Code *">
+									<select>
+										<option>-- Country --</option>
+										<option>United States</option>
+										<option>Bangladesh</option>
+										<option>UK</option>
+										<option>India</option>
+										<option>Pakistan</option>
+										<option>Ucrane</option>
+										<option>Canada</option>
+										<option>Dubai</option>
+									</select>
+									<select>
+										<option>-- State / Province / Region --</option>
+										<option>United States</option>
+										<option>Bangladesh</option>
+										<option>UK</option>
+										<option>India</option>
+										<option>Pakistan</option>
+										<option>Ucrane</option>
+										<option>Canada</option>
+										<option>Dubai</option>
+									</select>
+									<input type="password" placeholder="Confirm password">
+									<input type="text" placeholder="Phone *">
+									<input type="text" placeholder="Mobile Phone">
+									<input type="text" placeholder="Fax">
+
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="order-message">
+							<p>Shipping Order</p>
+							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+							<label><input type="checkbox"> Shipping to bill address</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="chose_area">
+						<ul class="user_option">
+							<li>
+								<input type="checkbox">
+								<label>Use Coupon Code</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Use Gift Voucher</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Estimate Shipping & Taxes</label>
+							</li>
+						</ul>
+						<ul class="user_info">
+							<li class="single_field">
+								<label>Country:</label>
+								<select>
+									<option>United States</option>
+									<option>Bangladesh</option>
+									<option>UK</option>
+									<option>India</option>
+									<option>Pakistan</option>
+									<option>Ucrane</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+
+							</li>
+							<li class="single_field">
+								<label>Region / State:</label>
+								<select>
+									<option>Select</option>
+									<option>Dhaka</option>
+									<option>London</option>
+									<option>Dillih</option>
+									<option>Lahore</option>
+									<option>Alaska</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+
+							</li>
+							<li class="single_field zip-field">
+								<label>Zip Code:</label>
+								<input type="text">
+							</li>
+						</ul>
+						<a class="btn btn-default update" href="">Get Quotes</a>
+						<a class="btn btn-default check_out" href="">Continue</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li>Cart Sub Total <span>${{total}}</span></li>
+<!--							<li>Eco Tax <span>$2</span></li>-->
+							<li>Shipping Cost <span>Free</span></li>
+							<li>Total <span>${{total}}</span></li>
+						</ul>
+							<a class="btn btn-default update" href="">Update</a>
+						<button  class="btn btn-primary">Check Out</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</Form>
+	</section><!--/#do_action-->
+{% endblock %}

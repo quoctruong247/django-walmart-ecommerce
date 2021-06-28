@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %} {{title}} {% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+
+
+<!-- BREADCRUMB -->
+    <div id="breadcrumb">
+
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Frequently Asked Questions</li>
+            </ul>
+
+    </div>
+    <!-- /BREADCRUMB -->
+    </div>
+    <div class="row">
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div id="accordion">
+                    {% for rs in faq %}
+                        <h3>{{ rs.question }}</h3>
+                        <div>
+                            <p>
+                                {{ rs.answer | safe }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+</div>
+</div>
+{% endblock %}

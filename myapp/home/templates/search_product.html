@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{query}}-result {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>PRODUCT RESULT</h3>
+        {% if products %}
+        <div class="row">
+            <div class="col-sm-2">PRODUCT</div>
+            <div class="col-sm-5"></div>
+            <div class="col-sm-2">CATEGORY</div>
+            <div class="col-sm-1">PRICE</div>
+            <div class="col-sm-1">QUANTITY</div>
+            <div class="col-sm-1"></div>
+        </div>
+        {% else %}
+        <div class="row"><div class="col-sm-12">Not result</div></div>
+        {% endif %}
+        {% for product in products %}
+        <div class="row">
+            <div class="col-sm-2"><img src="{{product.image.url}}" alt="" width="100%"></div>
+            <div class="col-sm-5">{{product.title}}</div>
+            <div class="col-sm-2">{{product.category}}</div>
+            <div class="col-sm-1">$ {{product.price}}</div>
+            <div class="col-sm-1"><input type="number" value="1" class="input" style="width:65px"></div>
+            <div class="col-sm-1"><a href="{% url 'addtoshopcart' product.id %}" class="btn btn-primary add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a></div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

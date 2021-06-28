@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-5">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+						{% if messages %}
+							{% for message in messages %}
+							<div class="alert alert-{{message.tags}}" role="alert">
+								{{ message }}
+							</div>
+							{% endfor %}
+						{% endif %}
+						<form action="{% url 'signup' %}" method="post">
+							{% csrf_token %}
+							{% for field in form %}
+							<p>
+								{{field.label_tag}}<br>
+								{{field}}
+								{% if field.help_text %}
+									<small style="color:grey">{{field.help_text}}</small>
+								{% endif %}
+								{% for error in field.errors %}
+									<p style="color:red">{{error}}</p>
+								{% endfor %}
+							</p>
+
+							{% endfor %}
+							<button class="btn btn-default">Sign up</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+{% endblock %}

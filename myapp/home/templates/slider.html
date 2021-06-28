@@ -1,0 +1,62 @@
+{% load static %}
+{% load i18n %}
+<section id="slider"><!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for item in product_slider %}
+                        {% if forloop.counter == 1%}
+                        <li data-target="#slider-carousel" data-slide-to="forloop.counter" class="active"></li>
+                        {% else %}
+                        <li data-target="#slider-carousel" data-slide-to="forloop.counter" ></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ol>
+                    
+                    <div class="carousel-inner">
+                        {% for item in product_slider %}
+                        {% if forloop.counter == 1%}
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h2>{{item.title}}</h2>
+                                <p>{{item.description}} </p>
+                                <a href="{% url 'product_detail' item.id item.slug %}" class="btn btn-default get">{% trans 'Get it now' %}</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="{{ item.image.url }}" class="girl img-responsive" alt="" />
+
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="item">
+                             <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h2>{{item.title}}</h2>
+                                <p>{{item.description}} </p>
+                                <button type="button" class="btn btn-default get">{% trans 'Get it now' %}</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="{{ item.image.url }}" class="girl img-responsive" alt="" />
+
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+                    
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->

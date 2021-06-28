@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+<section>
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>{{ category_detail.title }}</li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+    <div class="container">
+        <div class="row">
+	        {%	include 'left.html' %}
+        <div class="col-sm-9 padding-right">
+        <h3>{{category_list.category.title}}</h3>
+        {% if category_list %}
+        <div class="row">
+            <div class="col-sm-2">PRODUCT</div>
+            <div class="col-sm-5"></div>
+            <div class="col-sm-2">CATEGORY</div>
+            <div class="col-sm-1">PRICE</div>
+            <div class="col-sm-1">QUANTITY</div>
+            <div class="col-sm-1"></div>
+        </div>
+        {% else %}
+        <div class="row"><div class="col-sm-12">Not result</div></div>
+        {% endif %}
+        {% for product in category_list %}
+        <div class="row">
+            <div class="col-sm-2"><img src="{{product.image.url}}" alt="" width="100%"></div>
+            <div class="col-sm-5"><a href="/product-detail/{{product.id}}/{{product.slug}}">{{product.title}}</a></div>
+            <div class="col-sm-2">{{product.category}}</div>
+            <div class="col-sm-1">$ {{product.price}}</div>
+            <div class="col-sm-1"><input type="number" value="1" class="input" style="width:65px"></div>
+            <div class="col-sm-1"><a href="/addtocart/{{product.id}}" class="btn btn-primary add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a></div>
+        </div>
+        {% endfor %}
+
+    </div>
+        </div>
+</section>
+{% endblock %}

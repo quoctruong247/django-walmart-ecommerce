@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>USER PANEL</h3>
+                <p><a href="{% url 'userprofile' %}">User Profile</a></p>
+                <p><a href="{% url 'user_orders' %}">My Orders</a></p>
+                <p><a href="{% url 'user_order_product' %}">My Order Product</a></p>
+                <p><a href="{% url 'user_comments' %}">My Comment</a></p>
+                <p><a href="#">My Favorites</a></p>
+                <p><a href="#">My Products</a></p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+            </div>
+            <div class="col-sm-9">
+                <div class="row profile">
+                    <h3/>USER PROFILE</h3>
+
+                    <form method="POST" enctype = "multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            {{ user_form.as_p  }}
+                            {{ profile_form.as_p  }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="primary-btn" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

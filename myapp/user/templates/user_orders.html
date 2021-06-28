@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>USER PANEL</h3>
+                <p><a href="{% url 'userprofile' %}">User Profile</a></p>
+                <p><a href="{% url 'user_orders' %}">My Orders</a></p>
+                <p><a href="{% url 'user_order_product' %}">My Order Product</a></p>
+                <p><a href="{% url 'user_comments' %}">My Comment</a></p>
+                <p><a href="#">My Favorites</a></p>
+                <p><a href="#">My Products</a></p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+            </div>
+            <div class="col-sm-9">
+                <div class="row profile">
+                    <h3/>USER ORDERS</h3>
+
+                    <table class="shopping-cart-table table">
+                            <tr>
+                                <th class="text-left">Id </th>
+                                <th class="text-left">First Name </th>
+                                <th class="text-left">Last Name </th>
+                                <th class="text-left">Total </th>
+                                <th class="text-left">Status </th>
+                                <th class="text-left">Date </th>
+                                <th class="text-left">Detail </th>
+                            </tr>
+                            {% for rs in orders %}
+                                <tr>
+                                    <td class="text-left">{{ rs.id}} </td>
+                                    <td class="text-left">{{ rs.first_name}} </td>
+                                    <td class="text-left">{{ rs.last_name}} </td>
+                                    <td class="text-left">{{ rs.total}} </td>
+                                    <td class="text-left">{{ rs.status}} </td>
+                                    <td class="text-left">{{ rs.create_at}} </td>
+                                    <td class="text-left"><a class="btn btn-primary" href="/user/orderdetail/{{ rs.id }}"> Detail </a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
